@@ -5,15 +5,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-public class GenericMethods {
+public class GenericMethodsOld {
 
     WebDriver driver;
 
-    public GenericMethods(WebDriver driver){
+    public GenericMethodsOld(WebDriver driver){
         this.driver = driver;
     }
 
@@ -45,32 +44,34 @@ public class GenericMethods {
 
     public List<WebElement> getElementList(String locator, String type){
         type = type.toLowerCase();
-        List<WebElement> list = new ArrayList<>();
         if("id".equals(type)){
-            list = driver.findElements(By.id(locator));
+            log.info("用id查找路徑:{}",locator);
+            return driver.findElements(By.id(locator));
         }else if("xpath".equals(type)){
-            list = driver.findElements(By.xpath(locator));
+            log.info("用xpath查找路徑:{}",locator);
+            return driver.findElements(By.xpath(locator));
         }else if("name".equals(type)){
-            list = driver.findElements(By.name(locator));
+            log.info("用name查找路徑:{}",locator);
+            return driver.findElements(By.name(locator));
         }else if("css".equals(type)){
-            list = driver.findElements(By.cssSelector(locator));
+            log.info("用css查找路徑:{}",locator);
+            return driver.findElements(By.cssSelector(locator));
         }else if("classname".equals(type)){
-            list = driver.findElements(By.className(locator));
+            log.info("用classname查找路徑:{}",locator);
+            return driver.findElements(By.className(locator));
         }else if("tagname".equals(type)){
-            list = driver.findElements(By.tagName(locator));
+            log.info("用tagname查找路徑:{}",locator);
+            return driver.findElements(By.tagName(locator));
         }else if("linktext".equals(type)){
-            list = driver.findElements(By.linkText(locator));
+            log.info("用linktext查找路徑:{}",locator);
+            return driver.findElements(By.linkText(locator));
         }else if("partiallinktext".equals(type)){
-            list = driver.findElements(By.partialLinkText(locator));
+            log.info("用partiallinktext查找路徑:{}",locator);
+            return driver.findElements(By.partialLinkText(locator));
         }else{
             log.info("定位的路徑不支援");
         }
-        if(list.isEmpty()){
-            log.info("用 {} : {} 沒有找到元素",type,locator);
-        }else{
-            log.info("元素用 {} : {} 找到了",type,locator);
-        }
-        return list;
+        return null;
     }
 
     public boolean isElementPresent(String locator, String type){
