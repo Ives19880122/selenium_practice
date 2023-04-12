@@ -28,4 +28,18 @@ public class WaitTypes {
        }
        return element;
    }
+
+    public WebElement clickWhenReady(By locator,int timeout){
+        WebElement element = null;
+        try {
+            log.info("最長等待了{}秒元素可點擊",timeout);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+            element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+            element.click();
+            log.info("在頁面上點擊了元素");
+        }catch (Exception e){
+            log.error("元素沒有在頁面上出現");
+        }
+        return element;
+    }
 }

@@ -38,11 +38,13 @@ public class ExplicitWaitWithUtilityDemoTest {
         log.info("體適能中心現況人數:{}",peopleCount.getText());
         WebElement swimCount = wt.waitForElement(By.xpath("//span[contains(text(),'游泳池')]//following-sibling::span"),10);
         log.info("游泳池現況人數:{}",swimCount.getText());
+        log.info("畫面點擊了解更多");
+        wt.clickWhenReady(By.xpath("//div[contains(@class,'owl-item') and contains(@class,'active')]//a[contains(text(),'了解更多')]"),3);
     }
 
     @After
     public void tearDown() throws Exception{
-        Thread.sleep(2000);
+        Thread.sleep(6000);
         driver.quit();
     }
 }
